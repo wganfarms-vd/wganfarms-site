@@ -9,7 +9,7 @@
     "uses": "Curries, chutneys, marinades, spice blends, hot sauces, oleoresin",
     "why": "Balanced heat + color + aroma; export-grade demand.",
     "drying": "Sun-dried on open yards for 10–20 days; hand-turned; no artificial heat.",
-    "image": "guntur-sannam-chilli-close-up-red.svg",
+    "image": "guntur-sannam-chilli-close-up-red.png",
     "story": "There is a particular quality to the Guntur sky in November — a hard, relentless brightness over miles of red drying yards."
   },
   {
@@ -22,7 +22,7 @@
     "uses": "Industrial spice, calibrated heat blends, hot sauces, extracts",
     "why": "Preferred when heat must be measurable and consistent.",
     "drying": "Open-yard drying; monitored to avoid cracking.",
-    "image": "teja-chilli-harvesting-andhra.svg",
+    "image": "teja-chilli-harvesting-andhra.png",
     "story": "Teja is heat with discipline — it builds, lingers, and communicates."
   },
   {
@@ -35,7 +35,7 @@
     "uses": "Color-forward gravies, Chettinad/Coorg styles, natural color extracts",
     "why": "Extraordinary color yield; premium for natural reds.",
     "drying": "Careful drying to preserve maroon color; partial shade in afternoons.",
-    "image": "byadgi-chilli-andhra-traded-variety.svg",
+    "image": "byadgi-chilli-andhra-traded-variety.png",
     "story": "The painter’s chilli — used when the dish must look magnificent without overwhelming heat."
   },
   {
@@ -48,7 +48,7 @@
     "uses": "Everyday cooking, powders, spice blends",
     "why": "Reliable, consistent, export-grade friendly.",
     "drying": "Open-yard sun drying 12–18 days; surfaces cleaned carefully.",
-    "image": "334-variety-chilli-andhra-pradesh.svg",
+    "image": "334-variety-chilli-andhra-pradesh.png",
     "story": "Dependability made into a chilli — consistent season after season."
   },
   {
@@ -61,7 +61,7 @@
     "uses": "Telangana curries, lentils; commercial blends needing body + heat",
     "why": "Distinct regional heat signature.",
     "drying": "Raised mats; low humidity + strong sun; 15–20 days.",
-    "image": "warangal-chilli-fields-telangana.svg",
+    "image": "warangal-chilli-fields-telangana.png",
     "story": "Unmistakably Telangana — fierce, proud, and direct."
   },
   {
@@ -74,7 +74,7 @@
     "uses": "Masalas, pickles, curry pastes",
     "why": "Fuller pods; richer flavor and stronger color.",
     "drying": "Open-platform drying; precise first-turn timing.",
-    "image": "khammam-chilli-harvest-telangana.svg",
+    "image": "khammam-chilli-harvest-telangana.png",
     "story": "A crossroads chilli — blending commercial scale and local character."
   },
   {
@@ -87,7 +87,7 @@
     "uses": "Chettinad cuisine, fish curries, temple foods",
     "why": "Iconic coastal variety with intense character.",
     "drying": "Woven mats; sea breeze + sun; 15–25 days.",
-    "image": "ramnad-mundu-chilli-tamil-nadu-round-pods.svg",
+    "image": "ramnad-mundu-chilli-tamil-nadu-round-pods.png",
     "story": "Small in size, massive in legacy — the heat of the Coromandel sky inside a round pod."
   },
   {
@@ -100,7 +100,7 @@
     "uses": "Sambar, kuzhambu, rasam, home staples",
     "why": "Heritage diversity with deep flavor complexity.",
     "drying": "Terraces/platforms; turned daily; protected from humidity.",
-    "image": "tamil-nadu-sun-dried-local-chilli-varieties.svg",
+    "image": "tamil-nadu-sun-dried-local-chilli-varieties.png",
     "story": "A living feedback loop between farm and kitchen — regional diversity you can taste."
   },
   {
@@ -113,7 +113,7 @@
     "uses": "Color-forward gravies, marinades, natural color extracts",
     "why": "Global gold standard for clean-label red color.",
     "drying": "Shade-assisted drying to preserve deep maroon.",
-    "image": "byadgi-dabbi-chilli-karnataka-deep-red.svg",
+    "image": "byadgi-dabbi-chilli-karnataka-deep-red.png",
     "story": "A heritage chilli powering the global shift to natural colors — without losing its roots."
   },
   {
@@ -126,7 +126,7 @@
     "uses": "Powders, spice mixes; tempering for rapid color release",
     "why": "High color extraction efficiency.",
     "drying": "Elevated mats for airflow; prevent over-drying.",
-    "image": "byadgi-kaddi-thin-wrinkled-karnataka.svg",
+    "image": "byadgi-kaddi-thin-wrinkled-karnataka.png",
     "story": "A few pods in hot oil, and everything turns jewel-red — instantly."
   }
 ]
