@@ -161,3 +161,69 @@
 </footer>
 
 <script src="js/main.js"></script>
+  
+<script>
+(function () {
+  const video = document.getElementById("heroVideo");
+  const btn = document.getElementById("videoToggle");
+  const wrap = document.getElementById("heroVideoWrap");
+  if (!video || !btn || !wrap) return;
+
+  let userPaused = false;
+
+  const setUI = (isPlaying) => {
+    btn.textContent = isPlaying ? "⏸" : "▶";
+    btn.setAttribute("aria-label", isPlaying ? "Pause video" : "Play video");
+    wrap.classList.toggle("is-playing", isPlaying);
+  };
+
+  try { video.pause(); } catch(e) {}
+  setUI(false);
+
+  btn.addEventListener("click", async () => {
+    try {
+      if (video.paused) {
+        userPaused = false;
+        await video.play();
+        setUI(true);
+      } else {
+        userPaused = true;
+        video.pause();
+        setUI(false);
+      }
+    } catch (e) {
+      console.error(e);
+      setUI(false);
+    }
+  });
+
+  const io = new IntersectionObserver(async (entries) => {
+    const entry = entries[0];
+    if (!entry) return;
+
+    if (!entry.isIntersecting) {
+      video.pause();
+      setUI(false);
+      return;
+    }
+
+    if (video.paused && !userPaused) {
+      try {
+        await video.play();
+        setUI(true);
+      } catch {
+        setUI(false);
+      }
+    }
+  }, { threshold: 0.6 });
+
+  io.observe(wrap);
+
+  video.addEventListener("play", () => setUI(true));
+  video.addEventListener("pause", () => setUI(false));
+  video.addEventListener("ended", () => {
+    userPaused = false;
+    setUI(false);
+  });
+})();
+</script>
