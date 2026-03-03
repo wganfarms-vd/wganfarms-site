@@ -94,6 +94,42 @@
   </div>
 </section>
 
+<!-- ✅ RESTORED PREMIUM STORY CARDS -->
+<section class="section">
+  <div class="container">
+    <h2>Where the story begins</h2>
+    <p>
+      Long before the language of branding existed, South Indian farmers already
+      knew the language of fire. WGAN FARMS is built on direct relationships with
+      farming communities across Andhra Pradesh, Telangana, Tamil Nadu, and Karnataka.
+    </p>
+
+    <hr class="sep">
+
+    <div class="cards">
+
+      <div class="card media premium-card">
+        <img src="assets/images/from-soil-to-story.jpg" alt="From soil to story">
+        <div class="overlay"></div>
+        <div class="label">
+          <strong>From soil to story</strong>
+          <span>Farm selection and origin integrity.</span>
+        </div>
+      </div>
+
+      <div class="card media premium-card">
+        <img src="assets/images/spectrum-of-heat-and-color.jpg" alt="A spectrum of heat and color">
+        <div class="overlay"></div>
+        <div class="label">
+          <strong>A spectrum of heat &amp; color</strong>
+          <span>Explore our curated portfolio.</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 </main>
 
 <footer class="site-footer">
@@ -125,78 +161,3 @@
 </footer>
 
 <script src="js/main.js"></script>
-
-<!-- ⭐ FINAL PREMIUM VIDEO ENGINE -->
-<script>
-(function () {
-  const video = document.getElementById("heroVideo");
-  const btn = document.getElementById("videoToggle");
-  const wrap = document.getElementById("heroVideoWrap");
-  if (!video || !btn || !wrap) return;
-
-  let userPaused = false;
-
-  const setUI = (isPlaying) => {
-    btn.textContent = isPlaying ? "⏸" : "▶";
-    btn.setAttribute("aria-label", isPlaying ? "Pause video" : "Play video");
-    wrap.classList.toggle("is-playing", isPlaying);
-  };
-
-  // default paused
-  try { video.pause(); } catch(e) {}
-  setUI(false);
-
-  // manual toggle
-  btn.addEventListener("click", async () => {
-    try {
-      if (video.paused) {
-        userPaused = false;
-        await video.play();
-        setUI(true);
-      } else {
-        userPaused = true;
-        video.pause();
-        setUI(false);
-      }
-    } catch (e) {
-      console.error(e);
-      setUI(false);
-    }
-  });
-
-  // viewport autoplay
-  const io = new IntersectionObserver(async (entries) => {
-    const entry = entries[0];
-    if (!entry) return;
-
-    if (!entry.isIntersecting) {
-      video.pause();
-      setUI(false);
-      return;
-    }
-
-    if (video.paused && !userPaused) {
-      try {
-        await video.play();
-        setUI(true);
-      } catch {
-        setUI(false);
-      }
-    }
-  }, { threshold: 0.6 });
-
-  io.observe(wrap);
-
-  video.addEventListener("play", () => setUI(true));
-  video.addEventListener("pause", () => setUI(false));
-
-  // reset after end
-  video.addEventListener("ended", () => {
-    userPaused = false;
-    setUI(false);
-  });
-})();
-</script>
-
-</body>
-</html>
