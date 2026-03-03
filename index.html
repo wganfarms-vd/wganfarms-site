@@ -7,12 +7,13 @@
   <meta name="description" content="Premium Dry Red Chillies from South India.">
   <link rel="stylesheet" href="css/styles.css">
 
-  <!-- Premium fonts (needed if your CSS uses Inter + Playfair Display) -->
+  <!-- Premium fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
+
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="index.html" aria-label="WGAN FARMS Home">
@@ -29,6 +30,8 @@
 </header>
 
 <main>
+
+<!-- HERO -->
 <section class="hero">
   <div class="container hero-grid">
     <div class="card pad">
@@ -50,7 +53,7 @@
       <p class="small">
         We do not merely sell chillies. We carry forward a living tradition —
         one harvest at a time. What reaches your kitchen or container shipment
-        is exactly what left the farmer’s hands. Nothing added. Nothing compromised.
+        is exactly what left the farmer’s hands.
       </p>
     </div>
 
@@ -65,20 +68,21 @@
   </div>
 </section>
 
-<!-- ✅ FARM → PACKAGING DOCUMENTARY VIDEO (Default Paused + Hover Button + Auto Play in View) -->
+<!-- 🎬 VIDEO -->
 <section class="section">
   <div class="container">
     <div id="heroVideoWrap" class="card media hero-video-wrapper" aria-label="Farm to Packaging Video">
+
       <video
         id="heroVideo"
         muted
         playsinline
+        webkit-playsinline
         preload="metadata"
         poster="assets/images/farm-to-packaging-journey-visual-flow.png">
         <source src="assets/videos/farm-to-packaging-documentary-wgan.mp4" type="video/mp4">
       </video>
 
-      <!-- ✅ Center button (CSS will handle hover/fade) -->
       <button id="videoToggle" class="video-toggle-btn" aria-label="Play video" type="button">▶</button>
 
       <div class="overlay"></div>
@@ -90,76 +94,6 @@
   </div>
 </section>
 
-<section class="section">
-  <div class="container">
-    <h2>Where the story begins</h2>
-    <p>
-      Long before the language of branding existed, South Indian farmers already
-      knew the language of fire. WGAN FARMS is built on direct relationships with
-      farming communities across Andhra Pradesh, Telangana, Tamil Nadu, and Karnataka.
-    </p>
-
-    <div class="grid3">
-      <div class="card tile">
-        <div class="kicker">ORIGIN</div>
-        <h3>Field-verified varieties</h3>
-        <p>Each chilli is selected for its authentic geography, soil character, and culinary identity.</p>
-      </div>
-
-      <div class="card tile">
-        <div class="kicker">PROCESS</div>
-        <h3>Sun-dried, not rushed</h3>
-        <p>Traditional drying, moisture control, cleaning, grading, hygienic packing.</p>
-      </div>
-
-      <div class="card tile">
-        <div class="kicker">EXPORT</div>
-        <h3>Bulk & global readiness</h3>
-        <p>Consistent grades, documentation support, private label options.</p>
-      </div>
-    </div>
-
-    <hr class="sep">
-
-    <div class="cards">
-      <div class="card media">
-        <img src="assets/images/south-india-chilli-farm-sunrise-aerial.png" alt="Farm sunrise">
-        <div class="overlay"></div>
-        <div class="label">
-          <strong>From soil to story</strong>
-          <span>Farm selection and origin integrity.</span>
-        </div>
-      </div>
-
-      <div class="card media">
-        <img src="assets/images/variety-collection-flatlay-all-south-india-chillies.png" alt="Varieties">
-        <div class="overlay"></div>
-        <div class="label">
-          <strong>A spectrum of heat &amp; color</strong>
-          <span>Explore our curated portfolio.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="card pad">
-      <div class="kicker">NEXT</div>
-      <h2 style="margin-top:8px">Start with the varieties</h2>
-      <p>
-        See origin, heat profile, traditional drying, and authenticity story
-        for every chilli we supply.
-      </p>
-
-      <div class="actions">
-        <a class="btn" href="varieties.html">View Varieties</a>
-        <a class="ghost" href="process.html">See Our Process</a>
-      </div>
-    </div>
-  </div>
-</section>
 </main>
 
 <footer class="site-footer">
@@ -192,70 +126,75 @@
 
 <script src="js/main.js"></script>
 
-<!-- ✅ Premium video behavior:
-     - Default paused with poster visible
-     - Center button appears on hover (CSS)
-     - Click toggles play/pause
-     - Auto play when 60% visible; pause when out of view
--->
+<!-- ⭐ FINAL PREMIUM VIDEO ENGINE -->
 <script>
 (function () {
   const video = document.getElementById("heroVideo");
   const btn = document.getElementById("videoToggle");
-  if (!video || !btn) return;
+  const wrap = document.getElementById("heroVideoWrap");
+  if (!video || !btn || !wrap) return;
+
+  let userPaused = false;
 
   const setUI = (isPlaying) => {
     btn.textContent = isPlaying ? "⏸" : "▶";
     btn.setAttribute("aria-label", isPlaying ? "Pause video" : "Play video");
+    wrap.classList.toggle("is-playing", isPlaying);
   };
 
-  // Default paused
+  // default paused
   try { video.pause(); } catch(e) {}
   setUI(false);
 
+  // manual toggle
   btn.addEventListener("click", async () => {
     try {
       if (video.paused) {
+        userPaused = false;
         await video.play();
         setUI(true);
       } else {
+        userPaused = true;
         video.pause();
         setUI(false);
       }
     } catch (e) {
       console.error(e);
-      try { video.pause(); } catch(_) {}
       setUI(false);
     }
   });
 
-  // Auto play/pause in viewport (premium scroll behavior)
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(async (entry) => {
-      if (!entry.isIntersecting) {
-        try { video.pause(); } catch(_) {}
+  // viewport autoplay
+  const io = new IntersectionObserver(async (entries) => {
+    const entry = entries[0];
+    if (!entry) return;
+
+    if (!entry.isIntersecting) {
+      video.pause();
+      setUI(false);
+      return;
+    }
+
+    if (video.paused && !userPaused) {
+      try {
+        await video.play();
+        setUI(true);
+      } catch {
         setUI(false);
-        return;
       }
-      // If user already paused manually, don’t force play.
-      // We treat "ended or never played" as ok to autoplay when visible.
-      if (video.paused) {
-        try {
-          await video.play();
-          setUI(true);
-        } catch (_) {
-          // Autoplay may be blocked on some browsers; keep poster + play button
-          setUI(false);
-        }
-      }
-    });
+    }
   }, { threshold: 0.6 });
 
-  io.observe(video);
+  io.observe(wrap);
 
-  // Keep UI in sync if user uses native controls somehow
   video.addEventListener("play", () => setUI(true));
   video.addEventListener("pause", () => setUI(false));
+
+  // reset after end
+  video.addEventListener("ended", () => {
+    userPaused = false;
+    setUI(false);
+  });
 })();
 </script>
 
