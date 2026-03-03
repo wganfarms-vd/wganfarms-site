@@ -283,3 +283,83 @@ a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visibl
   outline-offset:3px;
   border-radius:12px;
 }
+
+/* ================= PREMIUM POLISH PATCH (ADD AT END) ================= */
+
+/* Fonts (use with Google Fonts link in HTML head) */
+:root{
+  --serif: "Playfair Display", ui-serif, Georgia, serif;
+  --sans: "Inter", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --ring: rgba(31,95,58,.35);
+  --cardShadow: 0 22px 55px rgba(31,95,58,.10);
+}
+
+body{ font-family: var(--sans); }
+h1, h2, .page-title{ font-family: var(--serif); letter-spacing: .01em; }
+h1{ font-weight: 800; }
+.section h2{ font-weight: 800; }
+
+/* Header polish */
+.site-header{
+  background: rgba(255,255,255,.92);
+  border-bottom: 1px solid rgba(31,95,58,.10);
+}
+.nav a{ font-weight: 600; }
+.nav a:hover{ background: rgba(31,95,58,.06); }
+
+/* Button polish */
+.btn{
+  border: 1px solid rgba(255,255,255,.35);
+  box-shadow: 0 12px 28px rgba(31,95,58,.22);
+}
+.btn:hover{
+  transform: translateY(-1px);
+  filter: brightness(1.03);
+  box-shadow: 0 18px 40px rgba(31,95,58,.28);
+}
+.actions .ghost{
+  border: 1px solid rgba(31,95,58,.22);
+  font-weight: 700;
+}
+
+/* Card polish */
+.card{
+  box-shadow: var(--cardShadow);
+  border: 1px solid rgba(31,95,58,.10);
+}
+.card:hover{
+  transform: translateY(-2px);
+}
+
+/* More premium spacing */
+.section{ padding: 44px 0; }
+.hero{ padding: 52px 0 26px; }
+
+/* Media placeholder (for missing images) */
+.card.media{
+  background: linear-gradient(135deg, rgba(31,95,58,.10), rgba(199,164,75,.10));
+}
+.card.media img{
+  background: transparent;
+}
+
+/* If image missing, keep it elegant */
+.card.media img[src=""], .card.media img:not([src]){
+  display:none;
+}
+.card.media::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(900px 300px at 20% 20%, rgba(255,255,255,.45), transparent 60%);
+  pointer-events:none;
+  opacity:.6;
+}
+
+/* Focus rings */
+a:focus-visible, button:focus-visible, summary:focus-visible, input:focus-visible, textarea:focus-visible{
+  outline: 3px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 14px;
+}
