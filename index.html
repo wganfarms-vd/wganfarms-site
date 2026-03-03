@@ -60,17 +60,17 @@
   </div>
 </section>
 
-<!-- ✅ UPDATED: FARM → PACKAGING DOCUMENTARY VIDEO (with Pause/Play) -->
+<!-- ✅ FARM → PACKAGING DOCUMENTARY VIDEO (Default Paused + Play Button) -->
 <section class="section">
   <div class="container">
     <div class="card media hero-video-wrapper">
-      <video id="heroVideo" autoplay muted loop playsinline
+      <video id="heroVideo" muted playsinline preload="metadata"
         poster="assets/images/farm-to-packaging-journey-visual-flow.png">
         <source src="assets/videos/farm-to-packaging-documentary-wgan.mp4" type="video/mp4">
       </video>
 
-      <!-- ✅ Pause/Play button -->
-      <button id="videoToggle" class="video-toggle-btn" aria-label="Pause or play video">⏸</button>
+      <!-- ✅ Default = Play -->
+      <button id="videoToggle" class="video-toggle-btn" aria-label="Play video">▶ Play</button>
 
       <div class="overlay"></div>
       <div class="label">
@@ -183,20 +183,35 @@
 
 <script src="js/main.js"></script>
 
-<!-- ✅ Fallback (works even if main.js is empty) -->
+<!-- ✅ Play/Pause logic (Default paused) -->
 <script>
   (function () {
     const video = document.getElementById("heroVideo");
-    const toggleBtn = document.getElementById("videoToggle");
-    if (!video || !toggleBtn) return;
+    const btn = document.getElementById("videoToggle");
+    if (!video || !btn) return;
 
-    toggleBtn.addEventListener("click", () => {
-      if (video.paused) {
-        video.play();
-        toggleBtn.textContent = "⏸";
-      } else {
+    // Ensure default paused UI
+    video.pause();
+    btn.textContent = "▶ Play";
+    btn.setAttribute("aria-label", "Play video");
+
+    btn.addEventListener("click", async () => {
+      try {
+        if (video.paused) {
+          await video.play();
+          btn.textContent = "⏸ Pause";
+          btn.setAttribute("aria-label", "Pause video");
+        } else {
+          video.pause();
+          btn.textContent = "▶ Play";
+          btn.setAttribute("aria-label", "Play video");
+        }
+      } catch (e) {
+        console.error(e);
+        // If autoplay/play is blocked, keep it paused with Play label
         video.pause();
-        toggleBtn.textContent = "▶";
+        btn.textContent = "▶ Play";
+        btn.setAttribute("aria-label", "Play video");
       }
     });
   })();
