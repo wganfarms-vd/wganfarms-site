@@ -6,6 +6,11 @@
   <title>WGAN FARMS — Premium Dry Red Chillies</title>
   <meta name="description" content="Premium Dry Red Chillies from South India.">
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Premium fonts (needed if your CSS uses Inter + Playfair Display) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 <header class="site-header">
@@ -60,17 +65,21 @@
   </div>
 </section>
 
-<!-- ✅ FARM → PACKAGING DOCUMENTARY VIDEO (Default Paused + Play Button) -->
+<!-- ✅ FARM → PACKAGING DOCUMENTARY VIDEO (Default Paused + Hover Button + Auto Play in View) -->
 <section class="section">
   <div class="container">
-    <div class="card media hero-video-wrapper">
-      <video id="heroVideo" muted playsinline preload="metadata"
+    <div class="card media hero-video-wrapper" aria-label="Farm to Packaging Video">
+      <video
+        id="heroVideo"
+        muted
+        playsinline
+        preload="metadata"
         poster="assets/images/farm-to-packaging-journey-visual-flow.png">
         <source src="assets/videos/farm-to-packaging-documentary-wgan.mp4" type="video/mp4">
       </video>
 
-      <!-- ✅ Default = Play -->
-      <button id="videoToggle" class="video-toggle-btn" aria-label="Play video">▶ Play</button>
+      <!-- ✅ Center button (CSS will handle hover/fade) -->
+      <button id="videoToggle" class="video-toggle-btn" aria-label="Play video" type="button">▶</button>
 
       <div class="overlay"></div>
       <div class="label">
@@ -126,7 +135,7 @@
         <img src="assets/images/variety-collection-flatlay-all-south-india-chillies.png" alt="Varieties">
         <div class="overlay"></div>
         <div class="label">
-          <strong>A spectrum of heat & color</strong>
+          <strong>A spectrum of heat &amp; color</strong>
           <span>Explore our curated portfolio.</span>
         </div>
       </div>
@@ -183,38 +192,71 @@
 
 <script src="js/main.js"></script>
 
-<!-- ✅ Play/Pause logic (Default paused) -->
+<!-- ✅ Premium video behavior:
+     - Default paused with poster visible
+     - Center button appears on hover (CSS)
+     - Click toggles play/pause
+     - Auto play when 60% visible; pause when out of view
+-->
 <script>
-  (function () {
-    const video = document.getElementById("heroVideo");
-    const btn = document.getElementById("videoToggle");
-    if (!video || !btn) return;
+(function () {
+  const video = document.getElementById("heroVideo");
+  const btn = document.getElementById("videoToggle");
+  if (!video || !btn) return;
 
-    // Ensure default paused UI
-    video.pause();
-    btn.textContent = "▶ Play";
-    btn.setAttribute("aria-label", "Play video");
+  const setUI = (isPlaying) => {
+    btn.textContent = isPlaying ? "⏸" : "▶";
+    btn.setAttribute("aria-label", isPlaying ? "Pause video" : "Play video");
+  };
 
-    btn.addEventListener("click", async () => {
-      try {
-        if (video.paused) {
-          await video.play();
-          btn.textContent = "⏸ Pause";
-          btn.setAttribute("aria-label", "Pause video");
-        } else {
-          video.pause();
-          btn.textContent = "▶ Play";
-          btn.setAttribute("aria-label", "Play video");
-        }
-      } catch (e) {
-        console.error(e);
-        // If autoplay/play is blocked, keep it paused with Play label
+  // Default paused
+  try { video.pause(); } catch(e) {}
+  setUI(false);
+
+  btn.addEventListener("click", async () => {
+    try {
+      if (video.paused) {
+        await video.play();
+        setUI(true);
+      } else {
         video.pause();
-        btn.textContent = "▶ Play";
-        btn.setAttribute("aria-label", "Play video");
+        setUI(false);
+      }
+    } catch (e) {
+      console.error(e);
+      try { video.pause(); } catch(_) {}
+      setUI(false);
+    }
+  });
+
+  // Auto play/pause in viewport (premium scroll behavior)
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(async (entry) => {
+      if (!entry.isIntersecting) {
+        try { video.pause(); } catch(_) {}
+        setUI(false);
+        return;
+      }
+      // If user already paused manually, don’t force play.
+      // We treat "ended or never played" as ok to autoplay when visible.
+      if (video.paused) {
+        try {
+          await video.play();
+          setUI(true);
+        } catch (_) {
+          // Autoplay may be blocked on some browsers; keep poster + play button
+          setUI(false);
+        }
       }
     });
-  })();
+  }, { threshold: 0.6 });
+
+  io.observe(video);
+
+  // Keep UI in sync if user uses native controls somehow
+  video.addEventListener("play", () => setUI(true));
+  video.addEventListener("pause", () => setUI(false));
+})();
 </script>
 
 </body>
