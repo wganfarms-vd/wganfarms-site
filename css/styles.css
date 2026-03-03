@@ -425,3 +425,75 @@ body::before{
     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E");
   mix-blend-mode:multiply;
 }
+/* ================= VARIETIES TOOLBAR (ADD AT END) ================= */
+
+.varieties-toolbar{
+  margin-top:16px;
+  display:grid;
+  grid-template-columns: 1.6fr .7fr auto;
+  gap:12px;
+  align-items:center;
+}
+
+@media (max-width: 820px){
+  .varieties-toolbar{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Search box */
+.varieties-search input{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(31,95,58,.14);
+  background:rgba(255,255,255,.85);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:14px;
+  box-shadow:0 10px 26px rgba(31,95,58,.06);
+  outline:none;
+  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.varieties-search input::placeholder{
+  color:rgba(31,42,31,.45);
+}
+
+.varieties-search input:focus{
+  border-color:rgba(31,95,58,.30);
+  box-shadow:0 0 0 4px rgba(31,95,58,.12), 0 14px 34px rgba(31,95,58,.10);
+  transform:translateY(-1px);
+}
+
+/* State dropdown */
+.varieties-filter select{
+  width:100%;
+  padding:12px 14px;
+  border-radius:14px;
+  border:1px solid rgba(31,95,58,.14);
+  background:rgba(255,255,255,.85);
+  color:var(--text);
+  font-family:var(--sans);
+  font-size:14px;
+  box-shadow:0 10px 26px rgba(31,95,58,.06);
+  outline:none;
+  cursor:pointer;
+  transition:border-color .18s ease, box-shadow .18s ease, transform .18s ease;
+}
+
+.varieties-filter select:focus{
+  border-color:rgba(31,95,58,.30);
+  box-shadow:0 0 0 4px rgba(31,95,58,.12), 0 14px 34px rgba(31,95,58,.10);
+  transform:translateY(-1px);
+}
+
+/* Count badge holder */
+.varieties-count{
+  display:flex;
+  justify-content:flex-end;
+}
+
+@media (max-width: 820px){
+  .varieties-count{ justify-content:flex-start; }
+}
