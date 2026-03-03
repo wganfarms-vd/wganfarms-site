@@ -50,7 +50,6 @@
     </div>
 
     <div class="card media">
-      <!-- ✅ PNG UPDATED -->
       <img src="assets/images/hero-wgan-farms-chilli-landscape-golden-hour.png" alt="WGAN FARMS hero">
       <div class="overlay"></div>
       <div class="label">
@@ -61,15 +60,18 @@
   </div>
 </section>
 
-<!-- ✅ NEW: FARM → PACKAGING DOCUMENTARY VIDEO (Premium Section) -->
+<!-- ✅ UPDATED: FARM → PACKAGING DOCUMENTARY VIDEO (with Pause/Play) -->
 <section class="section">
   <div class="container">
-    <div class="card media">
-      <video autoplay muted loop playsinline
-        poster="assets/images/farm-to-packaging-journey-visual-flow.png"
-        style="width:100%;height:100%;object-fit:cover;display:block">
+    <div class="card media hero-video-wrapper">
+      <video id="heroVideo" autoplay muted loop playsinline
+        poster="assets/images/farm-to-packaging-journey-visual-flow.png">
         <source src="assets/videos/farm-to-packaging-documentary-wgan.mp4" type="video/mp4">
       </video>
+
+      <!-- ✅ Pause/Play button -->
+      <button id="videoToggle" class="video-toggle-btn" aria-label="Pause or play video">⏸</button>
+
       <div class="overlay"></div>
       <div class="label">
         <strong>From Farm to Packaging</strong>
@@ -112,7 +114,6 @@
 
     <div class="cards">
       <div class="card media">
-        <!-- ✅ PNG UPDATED -->
         <img src="assets/images/south-india-chilli-farm-sunrise-aerial.png" alt="Farm sunrise">
         <div class="overlay"></div>
         <div class="label">
@@ -122,7 +123,6 @@
       </div>
 
       <div class="card media">
-        <!-- ✅ PNG UPDATED -->
         <img src="assets/images/variety-collection-flatlay-all-south-india-chillies.png" alt="Varieties">
         <div class="overlay"></div>
         <div class="label">
@@ -182,5 +182,25 @@
 </footer>
 
 <script src="js/main.js"></script>
+
+<!-- ✅ Fallback (works even if main.js is empty) -->
+<script>
+  (function () {
+    const video = document.getElementById("heroVideo");
+    const toggleBtn = document.getElementById("videoToggle");
+    if (!video || !toggleBtn) return;
+
+    toggleBtn.addEventListener("click", () => {
+      if (video.paused) {
+        video.play();
+        toggleBtn.textContent = "⏸";
+      } else {
+        video.pause();
+        toggleBtn.textContent = "▶";
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
