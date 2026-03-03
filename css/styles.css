@@ -543,4 +543,78 @@ body::before{
 #heroVideoWrap .label{
   pointer-events:none;
 }
+/* =========================================================
+ULTRA PREMIUM MEDIA CARDS — WGAN FINAL PATCH
+(SAFE ADD — DO NOT REMOVE EXISTING CSS)
+========================================================= */
+
+.card.media.premium-card{
+border-radius:22px;
+overflow:hidden;
+transition:
+transform .45s cubic-bezier(.22,.61,.36,1),
+box-shadow .45s ease,
+border-color .35s ease;
+}
+
+/* smooth cinematic zoom */
+.card.media.premium-card img{
+transition:
+transform 1.15s cubic-bezier(.22,.61,.36,1),
+filter .6s ease;
+will-change:transform;
+}
+
+/* richer overlay for export-grade feel */
+.card.media.premium-card .overlay{
+background:linear-gradient(
+to top,
+rgba(0,0,0,.72) 0%,
+rgba(0,0,0,.42) 42%,
+rgba(0,0,0,.12) 72%,
+transparent 100%
+);
+transition:opacity .45s ease;
+}
+
+/* premium text lift */
+.card.media.premium-card .label{
+transform:translateY(8px);
+opacity:.94;
+transition:all .45s ease;
+}
+
+/* hover luxury motion */
+.card.media.premium-card:hover{
+transform:translateY(-8px) scale(1.012);
+box-shadow:
+0 28px 70px rgba(0,0,0,.18),
+0 10px 26px rgba(31,95,58,.14);
+}
+
+.card.media.premium-card:hover img{
+transform:scale(1.085);
+filter:saturate(1.06) contrast(1.05);
+}
+
+.card.media.premium-card:hover .overlay{
+opacity:.88;
+}
+
+.card.media.premium-card:hover .label{
+transform:translateY(0);
+opacity:1;
+}
+
+/* mobile safety */
+@media (max-width:768px){
+.card.media.premium-card:hover{
+transform:none;
+box-shadow:var(--cardShadow);
+}
+.card.media.premium-card:hover img{
+transform:none;
+}
+}
+
 /* END */
