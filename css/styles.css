@@ -619,51 +619,39 @@ transform:none;
 
 /* END */
 
-/* =========================================================
-WGAN BRAND — ULTRA PREMIUM / ORGANIC / SIMPLE (SAFE PATCH)
-Paste at END of styles.css (does not remove anything)
-========================================================= */
+/* =========================================
+ULTRA PREMIUM BRAND REFINEMENT — WGAN
+(Safe enhancement — no layout break)
+========================================= */
 
-/* Slightly tighter, premium spacing + optical balance */
 .brand{
-  gap:11px;                 /* keeps it airy but premium */
-  letter-spacing:.10em;     /* cleaner luxury tracking */
-  align-items:baseline;
-  padding:6px 8px;
-  border-radius:14px;
-  transition:transform .22s ease, background .22s ease;
+  letter-spacing:.14em;
 }
 
-/* "WGAN" — deeper, richer green + subtle depth */
 .brand-mark{
   font-weight:900;
-  font-size:19px;           /* 1 step up for premium presence */
-  color:rgba(31,95,58,.98); /* still your primary tone */
-  letter-spacing:.14em;     /* luxury spacing */
-  text-shadow:0 1px 0 rgba(255,255,255,.65);
+  font-size:20px;
+  color:var(--primary);
+  letter-spacing:.18em;
+  position:relative;
 }
 
-/* "FARMS" — softer, refined small caps look */
+/* subtle organic underline accent */
+.brand-mark::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-4px;
+  width:22px;
+  height:2px;
+  background:linear-gradient(90deg,var(--premium),transparent);
+  opacity:.7;
+  border-radius:2px;
+}
+
 .brand-sub{
-  font-weight:800;
-  font-size:11px;           /* slightly smaller = premium hierarchy */
-  color:rgba(111,124,111,.92);
+  font-weight:600;
+  font-size:11px;
   letter-spacing:.22em;
-  text-transform:uppercase;
-  transform:translateY(-1px);  /* optical baseline alignment */
+  color:rgba(31,42,31,.55);
 }
-
-/* Premium organic hover — very subtle (not loud) */
-.brand:hover{
-  background:rgba(31,95,58,.04);
-  transform:translateY(-.5px);
-}
-
-/* Small screen safety */
-@media (max-width:640px){
-  .brand{padding:4px 6px}
-  .brand-mark{font-size:18px}
-  .brand-sub{font-size:10.5px; letter-spacing:.20em}
-}
-
-/* END BRAND PATCH */
