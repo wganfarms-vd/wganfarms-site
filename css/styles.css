@@ -538,4 +538,9 @@ body::before{
 @media (max-width: 820px){
   .varieties-count{ justify-content:flex-start; }
 }
+
+/* ===== VIDEO CLICK FIX ===== */
+#heroVideoWrap .label{
+  pointer-events:none;
+}
 /* END */
