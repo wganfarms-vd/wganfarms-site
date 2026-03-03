@@ -21,4 +21,4 @@ Replace each placeholder with a real image using the same base name.
 2. Settings → Pages → Deploy from a branch
 3. Branch: main, Folder: / (root)
 
-Generated on 2026-03-02.
+Generated on 2026-03-02..
