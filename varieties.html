@@ -7,6 +7,7 @@
   <meta name="description" content="Explore South India dry red chilli varieties.">
   <link rel="stylesheet" href="css/styles.css">
 </head>
+
 <body>
 <header class="site-header">
   <div class="container header-inner">
@@ -24,48 +25,51 @@
 </header>
 
 <main>
-<section class="page-hero">
-  <div class="container">
-    <div class="breadcrumb">Home / Varieties</div>
-    <div class="page-title">South India Dry Red Chilli Varieties</div>
-    <p class="page-sub">
-      A spectrum of heat, color, aroma, and character — curated across
-      Andhra Pradesh, Telangana, Tamil Nadu, and Karnataka.
-    </p>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">Home / Varieties</div>
+      <div class="page-title">South India Dry Red Chilli Varieties</div>
+      <p class="page-sub">
+        A spectrum of heat, color, aroma, and character — curated across
+        Andhra Pradesh, Telangana, Tamil Nadu, and Karnataka.
+      </p>
 
-    <!-- ✅ Premium catalog controls -->
-    <div class="varieties-toolbar">
-      <div class="varieties-search">
-        <input id="varietySearch" type="search" placeholder="Search varieties (ex: Teja, Byadgi, Guntur Sannam)..." aria-label="Search varieties">
-      </div>
+      <!-- ✅ Premium catalog controls -->
+      <div class="varieties-toolbar">
+        <div class="varieties-search">
+          <input
+            id="varSearch"
+            type="search"
+            placeholder="Search varieties (name, origin, uses)…"
+            aria-label="Search varieties"
+            autocomplete="off"
+          >
+        </div>
 
-      <div class="varieties-filter">
-        <select id="varietyState" aria-label="Filter by state">
-          <option value="all">All states</option>
-          <option value="Andhra Pradesh">Andhra Pradesh</option>
-          <option value="Telangana">Telangana</option>
-          <option value="Tamil Nadu">Tamil Nadu</option>
-          <option value="Karnataka">Karnataka</option>
-        </select>
-      </div>
+        <div class="varieties-filter">
+          <select id="stateFilter" aria-label="Filter by state">
+            <option value="">All states</option>
+            <!-- JS will populate the rest automatically -->
+          </select>
+        </div>
 
-      <div class="varieties-count">
-        <span class="badge" id="varietiesCount">Loading…</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <!-- NOTE: JS will inject cards here -->
-    <div class="cards" data-varieties>
-      <div class="card pad">
-        <p class="small">Loading varieties…</p>
+        <div class="varieties-count">
+          <span class="badge" id="varCount">Loading…</span>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <!-- JS will inject cards here -->
+      <div class="cards" data-varieties>
+        <div class="card pad">
+          <p class="small">Loading varieties…</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
 
 <footer class="site-footer">
@@ -97,26 +101,5 @@
 </footer>
 
 <script src="js/main.js"></script>
-
-<!-- ✅ Minimal UI wiring (filters) — works with updated main.js -->
-<script>
-  (function(){
-    const search = document.getElementById('varietySearch');
-    const state = document.getElementById('varietyState');
-
-    function fire(){
-      window.dispatchEvent(new CustomEvent('wgan:varieties:filter', {
-        detail: {
-          q: (search?.value || '').trim(),
-          state: (state?.value || 'all')
-        }
-      }));
-    }
-
-    if(search) search.addEventListener('input', fire);
-    if(state) state.addEventListener('change', fire);
-  })();
-</script>
-
 </body>
 </html>
